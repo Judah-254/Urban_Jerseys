@@ -15,10 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
     $phone_number = mysqli_real_escape_string($conn, $_POST['phone_number']);
     $street_address = mysqli_real_escape_string($conn, $_POST['street_address']);
-    $location = mysqli_real_escape_string($conn, $_POST['location']);
+    $location = mysqli_real_escape_string($conn, $_POST['location']);  // Corrected to match 'name="location"'
     
     // Insert the address into the database
-    $sql = "INSERT INTO addresses (user_id, full_name, phone_number, street_address,location) 
+    $sql = "INSERT INTO addresses (user_id, full_name, phone_number, street_address, location) 
             VALUES ('$user_id', '$full_name', '$phone_number', '$street_address', '$location')";
 
     if (mysqli_query($conn, $sql)) {
@@ -112,14 +112,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="street_address">Street Address</label>
         <input type="text" id="street_address" name="street_address" placeholder="Enter your street address" required>
 
-        <label for="country">Location</label>
-        <select id="country" name="country" required>
+        <label for="location">Location</label> <!-- Corrected 'name' attribute to match location -->
+        <select id="location" name="location" required>
             <option value="" disabled selected>Select your Location</option>
-                    <option value="Embu Town">Embu Town</option>
-                    <option value="University Area">University Area</option>
-                    <option value="Kangaru">Kangaru</option>
-                    <option value="Njukiri">Njukiri</option>
-                    <option value="Kayole">Kayole</option><!-- Add more countries as needed -->
+            <option value="Embu Town">Embu Town</option>
+            <option value="University Area">University Area</option>
+            <option value="Kangaru">Kangaru</option>
+            <option value="Njukiri">Njukiri</option>
+            <option value="Kayole">Kayole</option><!-- Add more locations as needed -->
         </select>
 
         <input type="submit" value="Add Address">
@@ -127,4 +127,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 </body>
-</html
+</html>
