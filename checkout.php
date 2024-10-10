@@ -23,6 +23,27 @@ foreach ($_SESSION['cart'] as $item) {
     $total_amount += $item['price'] * $item['quantity'];
 }
 
+$delivery_fee = 0;
+$discount = 0;
+
+// Calculate the number of jerseys in the cart
+$total_items = 0;
+foreach ($_SESSION['cart'] as $item) {
+    $total_items += $item['quantity']; // Sum up all the quantities
+}
+
+// Apply discount if more than 2 jerseys are in the cart
+if ($total_items > 2) {
+    $discount = 0.20 * $total_amount; // 20% discount
+}
+
+// Add delivery fee if the total amount is less than 5000
+if ($total_amount < 5000) {
+    $delivery_fee = 120;
+}
+
+// Calculate the final total (total - discount + delivery fee)
+$final_total = $total_amount - $discount + $delivery_fee;
 ?>
 
 <!DOCTYPE html>
@@ -119,6 +140,7 @@ foreach ($_SESSION['cart'] as $item) {
 
         #order-summary {
             text-align: center;
+            display: none; /* Initially hide the order summary */
         }
 
         .disabled-btn {
@@ -173,11 +195,11 @@ foreach ($_SESSION['cart'] as $item) {
                 <div id="pickup-station-container" class="hidden">
                     <label for="pickup-station">Select Pickup Station</label>
                     <select id="pickup-station" name="pickup-station" required>
-                    <option value="Embu Town">Embu Town</option>
-                    <option value="University Area">University Area</option>
-                    <option value="Kangaru">Kangaru</option>
-                    <option value="Njukiri">Njukiri</option>
-                    <option value="Kayole">Kayole</option>
+                        <option value="Embu Town">Embu Town</option>
+                        <option value="University Area">University Area</option>
+                        <option value="Kangaru">Kangaru</option>
+                        <option value="Njukiri">Njukiri</option>
+                        <option value="Kayole">Kayole</option>
                     </select>
                 </div>
             </form>
@@ -198,29 +220,27 @@ foreach ($_SESSION['cart'] as $item) {
             </form>
         </div>
     </div>
-
-    <!-- Order Summary Section (Separate container) -->
-    <div class="summary-container-wrapper">
-        <div class="summary-container" id="order-summary">
-            <h3>Order Summary</h3>
-            <p>Item(s) Total: Ksh <?php echo number_format($total_amount, 2); ?></p>
-            <p>Delivery Fee: <span id="delivery-fee">Ksh 0</span></p>
-            <p>Total: <span id="total-fee">Ksh <?php echo number_format($total_amount, 2); ?></span></p>
-            <button id="confirm-order-btn">Confirm Order</button>
-            <p>(Complete the steps in order to proceed)</p>
-        </div>
+<!-- Order Summary Section -->
+<div class="summary-container-wrapper">
+    <div class="summary-container" id="order-summary">
+        <h3>Order Summary</h3>
+        <p>Item(s) Total: Ksh <?php echo number_format($total_amount, 2); ?></p>
+        <?php if ($discount > 0): ?>
+            <p>Discount (20%): -Ksh <?php echo number_format($discount, 2); ?></p>
+        <?php endif; ?>
+        <p>Delivery Fee: Ksh <?php echo number_format($delivery_fee, 2); ?></p>
+        <p>Total: <span id="total-fee">Ksh <?php echo number_format($final_total, 2); ?></span></p>
+        
+        <!-- Hidden input to store the final total -->
+        <form action="payment_processing.php" method="POST">
+            <input type="hidden" id="final-total-input" name="final_total" value="<?php echo $final_total; ?>">
+            <button type="submit">Proceed to Payment</button>
+        </form>
     </div>
 </div>
 
-<script>
-    const deliveryCharges = {
-        "Embu Town": 120,
-        "University Area": 120,
-        "Kangaru": 120,
-        "Njukiri": 120,
-        "Kayole": 120
-    };
 
+<script>
     // Step-by-step navigation and validation
     document.getElementById('next-to-delivery').addEventListener('click', () => {
         if (document.getElementById('first-name').value &&
@@ -231,94 +251,37 @@ foreach ($_SESSION['cart'] as $item) {
             document.getElementById('address-section').classList.add('hidden');
             document.getElementById('delivery-section').classList.remove('hidden');
         } else {
-            alert('Please fill out all required fields.');
+            alert('Please fill in all required fields.');
         }
     });
 
-    // Handle delivery method selection and display pickup station when necessary
-    document.getElementById('delivery-method').addEventListener('change', function () {
-        if (this.value === 'pickup') {
+    document.getElementById('delivery-method').addEventListener('change', (event) => {
+        const selectedMethod = event.target.value;
+        if (selectedMethod === 'pickup') {
             document.getElementById('pickup-station-container').classList.remove('hidden');
         } else {
             document.getElementById('pickup-station-container').classList.add('hidden');
         }
     });
 
+    // Proceed to payment section
     document.getElementById('next-to-payment').addEventListener('click', () => {
-        const deliveryMethod = document.getElementById('delivery-method').value;
-        const selectedRegion = document.getElementById('region').value;
-        const deliveryFee = deliveryCharges[selectedRegion] || 0;
-
-        if ((deliveryMethod === 'pickup' && document.getElementById('pickup-station').value) ||
-            deliveryMethod === 'home-delivery') {
-            document.getElementById('delivery-section').classList.add('hidden');
-            document.getElementById('payment-section').classList.remove('hidden');
-
-            // Update delivery fee and total
-            document.getElementById('delivery-fee').textContent = `Ksh ${deliveryFee}`;
-            const total = <?php echo json_encode($total_amount); ?> + deliveryFee;
-            document.getElementById('total-fee').textContent = `Ksh ${total.toFixed(2)}`;
-        } else {
-            alert('Please select a delivery method and station (if applicable).');
-        }
+        document.getElementById('delivery-section').classList.add('hidden');
+        document.getElementById('payment-section').classList.remove('hidden');
+        document.getElementById('order-summary').style.display = 'block'; // Show order summary before confirming the order
     });
 
+    // Confirm payment method
     document.getElementById('confirm-payment-btn').addEventListener('click', () => {
-        if (document.getElementById('payment-method').value) {
-            document.getElementById('confirm-order-btn').classList.remove('disabled-btn');
-            document.getElementById('confirm-order-btn').disabled = false;
-        }
+        alert('Payment method confirmed.');
+        document.getElementById('payment-section').classList.add('hidden');
+        document.getElementById('order-summary').style.display = 'block'; // Show order summary
     });
 
-    // Confirm Order Button Click Handler
+    // Confirm order and redirect to payment_processing.php
     document.getElementById('confirm-order-btn').addEventListener('click', () => {
-        const paymentMethod = document.getElementById('payment-method').value;
-        const totalAmount = document.getElementById('total-fee').textContent;
-
-        if (paymentMethod === 'mpesa') {
-            // Redirect to payment processing page
-            window.location.href = 'payment_processing.php'; // Change this to your actual payment processing URL
-        } else if (paymentMethod === 'pay-on-delivery') {
-            alert('You will pay ' + totalAmount + ' on delivery.');
-        }
-    });
-src="https://code.jquery.com/jquery-3.6.0.min.js"
-
-    $(document).ready(function() {
-        // Enable button when required (if using validation logic, enable it after validations are passed)
-        $('#confirm-order-btn').removeAttr('disabled');
-
-        // Handle button click event
-        $('#confirm-order-btn').click(function() {
-            $.ajax({
-                url: 'complete_order.php',  // The PHP file that processes the order
-                method: 'POST',
-                dataType: 'json',  // Expect JSON response from the server
-                success: function(response) {
-                    if (response.status === 'success') {
-                        // Display success message and new balance
-                        $('#order-status').html(`
-                            <h2>Order Successful!</h2>
-                            <p>${response.message}</p>
-                            <p>Your new balance is: $${response.new_balance.toFixed(2)}</p>
-                        `);
-                    } else {
-                        // Display error message
-                        $('#order-status').html(`
-                            <h2>Order Failed</h2>
-                            <p>${response.message}</p>
-                        `);
-                    }
-                },
-                error: function() {
-                    // Handle unexpected errors
-                    $('#order-status').html(`
-                        <h2>Order Failed</h2>
-                        <p>There was an unexpected error while placing the order.</p>
-                    `);
-                }
-            });
-        });
+        alert('Order confirmed!');
+        window.location.href = 'payment_processing.php'; // Redirect to payment processing page
     });
 </script>
 

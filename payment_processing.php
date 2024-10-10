@@ -7,12 +7,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['cart'])) {
     exit();
 }
 
-// Calculate total amount including delivery fee
-$total_amount = 0;
-foreach ($_SESSION['cart'] as $item) {
-    $total_amount += $item['price'] * $item['quantity'];
-}
-$total_amount += 120; // Add delivery fee
+$total_amount = isset($_POST['final_total']) ? floatval($_POST['final_total']) : 0;
 
 ?>
 
