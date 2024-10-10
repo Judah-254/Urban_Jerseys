@@ -15,20 +15,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
     $phone_number = mysqli_real_escape_string($conn, $_POST['phone_number']);
     $street_address = mysqli_real_escape_string($conn, $_POST['street_address']);
-    $location = mysqli_real_escape_string($conn, $_POST['location']);
+    $location = mysqli_real_escape_string($conn, $_POST['location']);  // Corrected to match 'name="location"'
     
     // Insert the address into the database
     $sql = "INSERT INTO addresses (user_id, full_name, phone_number, street_address, location) 
             VALUES ('$user_id', '$full_name', '$phone_number', '$street_address', '$location')";
 
     if (mysqli_query($conn, $sql)) {
-        // Redirect to accounts page after successful address addition
-        header("Location: accounts.php"); // Replace with your actual accounts page
-        exit();
+        $success_message = "Address added successfully!";
     } else {
         $error_message = "Error: " . mysqli_error($conn);
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -113,8 +112,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="street_address">Street Address</label>
         <input type="text" id="street_address" name="street_address" placeholder="Enter your street address" required>
 
-        <label for="country">Location</label>
-        <select id="country" name="location" required>
+        <label for="location">Location</label> <!-- Corrected 'name' attribute to match location -->
+        <select id="location" name="location" required>
             <option value="" disabled selected>Select your Location</option>
             <option value="Embu Town">Embu Town</option>
             <option value="University Area">University Area</option>
