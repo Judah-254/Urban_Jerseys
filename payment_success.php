@@ -69,7 +69,7 @@ unset($_SESSION['cart']);
 <div class="container">
     <h2>Payment Successful!</h2>
     <p>Your payment has been processed successfully.</p>
-    <p>New Account Balance: Ksh <?php echo number_format($new_balance, 2); ?></p>
+    
     <a href="index.php" class="back-home">Return Home</a>
 </div>
 
