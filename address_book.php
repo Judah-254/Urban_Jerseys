@@ -18,8 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $location = mysqli_real_escape_string($conn, $_POST['location']);
     
     // Insert the address into the database
-    $sql = "INSERT INTO addresses (user_id, full_name, phone_number, street_address, city, state, postal_code, country) 
-            VALUES ('$user_id', '$full_name', '$phone_number', '$street_address', '$city', '$state', '$postal_code', '$country')";
+    $sql = "INSERT INTO addresses (user_id, full_name, phone_number, street_address,location) 
+            VALUES ('$user_id', '$full_name', '$phone_number', '$street_address', '$location')";
 
     if (mysqli_query($conn, $sql)) {
         $success_message = "Address added successfully!";
