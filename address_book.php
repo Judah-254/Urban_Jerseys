@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-require_once 'db.php'; // Include the database connection
+require_once 'php/db.php'; // Include the database connection
 
 // Handle the form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
