@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Initialize account balance for simulation purposes
-$account_balance = 000; // Example balance
+$account_balance = 0; // Corrected balance value
 $total_amount = 0;
 
 // Check if the cart is empty
@@ -20,7 +20,10 @@ if (empty($_SESSION['cart'])) {
 
 // Calculate total amount from the cart
 foreach ($_SESSION['cart'] as $item) {
-    $total_amount += $item['price'] * $item['quantity'];
+    // Ensure each item has both price and quantity before calculation
+    if (isset($item['price']) && isset($item['quantity'])) {
+        $total_amount += $item['price'] * $item['quantity'];
+    }
 }
 
 $delivery_fee = 0;
@@ -29,7 +32,9 @@ $discount = 0;
 // Calculate the number of jerseys in the cart
 $total_items = 0;
 foreach ($_SESSION['cart'] as $item) {
-    $total_items += $item['quantity']; // Sum up all the quantities
+    if (isset($item['quantity'])) {
+        $total_items += $item['quantity']; // Sum up all the quantities
+    }
 }
 
 // Apply discount if more than 2 jerseys are in the cart
@@ -45,6 +50,7 @@ if ($total_amount < 5000) {
 // Calculate the final total (total - discount + delivery fee)
 $final_total = $total_amount - $discount + $delivery_fee;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
