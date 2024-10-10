@@ -222,7 +222,7 @@ $total_amount = isset($_POST['final_total']) ? floatval($_POST['final_total']) :
                 <input type="radio" id="bank-card" name="payment-method" value="card">
                 <label for="bank-card">Bank Cards</label>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa">
-                <img src="images\master_card.jpg" alt="MasterCard">
+                <img src="images\master_card.jpg" alt="master_card">
             </div>
 
             <!-- Bank Card Input -->
