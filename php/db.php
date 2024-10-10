@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost"; // XAMPP default server
-$username = "root";        // Default MySQL username for XAMPP
-$password = "";            // Default password (leave empty)
-$dbname = "urban_jerseys_db";  // Database name (create this in phpMyAdmin)
+$username = "majhubcl_urbanjersey";        // Default MySQL username for XAMPP
+$password = "majhubcl_urbanjersey";            // Default password (leave empty)
+$dbname = "majhubcl_urbanjersey";  // Database name (create this in phpMyAdmin)
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
