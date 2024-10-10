@@ -11,15 +11,6 @@ $credit_balance = 0; // Example credit balance from DB or session
 $cart_items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 $total_cart_items = count($cart_items);
 $is_logged_in = isset($_SESSION['user_name']);
-
-
-// Fetch the user's addresses
-$user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM addresses WHERE user_id = '$user_id'";
-$result = mysqli_query($conn, $sql);
-
-// Check if the success flag is set in the URL
-$success = isset($_GET['success']) ? $_GET['success'] : 0;
 ?>
 
 <!DOCTYPE html>
