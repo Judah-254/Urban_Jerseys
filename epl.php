@@ -71,7 +71,7 @@ if (!$epl_jerseys_result) {
                 /* Hover color */
             }
         </style>
-
+<?php include 'footer.php'; ?>
 </body>
 
 </html>

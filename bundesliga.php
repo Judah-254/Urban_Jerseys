@@ -64,6 +64,6 @@ if (!$epl_jerseys_result) {
             color: #007bff; /* Hover color */
         }
     </style>
-
+<?php include 'footer.php'; ?>
 </body>
 </html>

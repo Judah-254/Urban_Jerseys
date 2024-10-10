@@ -52,4 +52,5 @@ $result = mysqli_query($conn, $query);
         <p>&copy; Your Jersey, Your Pride.</p>
     </footer>
 </body>
+<?php include 'footer.php'; ?>
 </html>
