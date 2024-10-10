@@ -240,18 +240,6 @@ if (isset($_SESSION['cart']) && count($_SESSION['cart']) >= 2) {
     </div>
 </div>
 
-    <!-- Promotion section -->
-    <?php if ($promotion_applied): ?>
-        <div class="row mt-4">
-            <div class="col-md-12">
-                <div class="alert alert-success text-center">
-                    Congratulations! You've qualified for 20% off for buying 2 or more jerseys. Discount: KSH <?php echo number_format($discount_amount, 2); ?>
-                </div>
-            </div>
-        </div>
-    <?php endif; ?>
-</div>
-
 <div class="container mt-5">
     <h3 class="text-center">New Products</h3>
 
