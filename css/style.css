@@ -1,0 +1,482 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+
+}
+
+/* Navbar and Header */
+.navbar {
+    background-color: #343a40;
+    /* Darker color to match jersey store */
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    /* White text for the links */
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #495057;
+    /* Slight hover effect */
+    color: #f8f9fa !important;
+    transition: 0.3s;
+}
+
+/* Cart Dropdown */
+.navbar .dropdown-menu {
+    background-color: #495057;
+    /* Match dropdown background */
+    color: #fff;
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.dropdown-item:hover {
+    background-color: #6c757d;
+    /* Lighter hover effect */
+}
+
+/* Buttons */
+.btn-primary,
+.btn-outline-success {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn-primary:hover,
+.btn-outline-success:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Login and Signup Pages */
+.login-container,
+.signup-container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2,
+.signup-container h2 {
+    color: #343a40;
+    font-weight: bold;
+}
+
+.login-container .form-control,
+.signup-container .form-control {
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.login-container .btn-primary,
+.signup-container .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.login-container .btn-primary:hover,
+.signup-container .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 16px;
+}
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Product Grid */
+.product-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.product-card .add-to-cart-btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-card .add-to-cart-btn:hover {
+    background-color: #218838;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-detail {
+    max-width: 600px;
+    /* Adjust as needed */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-detail img {
+    width: 100%;
+    /* Responsive image */
+    height: auto;
+    border-radius: 10px;
+}
+
+.product-detail h2 {
+    font-size: 24px;
+    margin-top: 15px;
+}
+
+.product-detail p {
+    font-size: 16px;
+}
+
+.product-detail button {
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+
+/* Footer Styles */
+footer {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-card {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}
+
+.suggestions-box {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ddd;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.list-group-item {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.list-group-item:hover {
+    background-color: #f1f1f1;
+}
+
+.badge {
+    margin-right: 5px;
+}
+
+/* Specific styling for product cards */
+.product-card {
+    max-width: 220px;
+    /* Adjust maximum width as needed */
+    margin: 0 auto;
+    /* Center the card */
+}
+
+.product-card img {
+    height: 150px;
+    /* Ensure all images have a uniform height */
+    object-fit: cover;
+    /* Keep aspect ratio while filling the area */
+    width: 100%;
+    /* Fill the card width */
+}
+
+.card-title {
+    font-size: 1.1rem;
+    /* Adjust title size */
+}
+
+.card-text {
+    font-size: 0.9rem;
+    /* Adjust text size */
+}
+
+/* Carousel Section */
+#offersCarousel {
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    /* Light grey background for the carousel */
+    border-radius: 10px;
+    /* Smooth round corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Light shadow effect */
+    overflow: hidden;
+    /* Ensures images don't overflow the carousel bounds */
+}
+
+/* Carousel images */
+#offersCarousel .carousel-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Carousel captions */
+#offersCarousel .carousel-caption {
+    background: rgba(0, 0, 0, 0.6);
+    /* Semi-transparent black background */
+    padding: 20px;
+    border-radius: 5px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+}
+
+/* Caption Heading */
+#offersCarousel .carousel-caption h5 {
+    color: #fff;
+    /* White text for heading */
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    /* Text shadow for better visibility */
+}
+
+/* Caption Paragraph */
+#offersCarousel .carousel-caption p {
+    color: #f1f1f1;
+    /* Light grey text for the description */
+    font-size: 16px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    /* Text shadow for better readability */
+}
+
+/* Carousel Controls */
+#offersCarousel .carousel-control-prev-icon,
+#offersCarousel .carousel-control-next-icon {
+    background-color: #000;
+    /* Black control icons */
+    border-radius: 50%;
+    padding: 10px;
+}
+
+#offersCarousel .carousel-control-prev,
+#offersCarousel .carousel-control-next {
+    width: 5%;
+    /* Adjust control width */
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    #offersCarousel .carousel-caption {
+        width: 90%;
+        font-size: 14px;
+        padding: 15px;
+    }
+
+    #offersCarousel .carousel-caption h5 {
+        font-size: 18px;
+    }
+
+    #offersCarousel .carousel-caption p {
+        font-size: 14px;
+    }
+}
+
+/* Add transition effect between carousel items */
+.carousel-item {
+    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+}
+
+/* Carousel Section - Full Width */
+#offersCarousel {
+    width: 100%;
+    /* Full width for the carousel */
+    margin: 0;
+    /* Remove the margin for the carousel */
+    background-color: #f8f9fa;
+    border-radius: 0;
+    /* Remove the border-radius for full-width effect */
+    box-shadow: none;
+    /* Remove the shadow if not needed for full width */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Adjust the height of the carousel images */
+#offersCarousel .carousel-item img {
+    width: 100%;
+    height: auto;
+    /* Maintain aspect ratio */
+    max-height: 500px;
+    /* Adjust this to your desired maximum height */
+    object-fit: cover;
+    /* Ensures images cover the space without cutting */
+    border-radius: 0;
+    /* Remove border-radius */
+}
+
+/* Carousel captions */
+#offersCarousel .carousel-caption {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 5px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+}
+
+/* Caption Heading */
+#offersCarousel .carousel-caption h5 {
+    color: #fff;
+    font-size: 20px;
+    /* Reduced font size */
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Style for Carousel Next and Previous buttons */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: black !important;
+    /* Change button color to black with !important */
+    border-radius: 50%;
+    /* Optional: make the buttons circular */
+    padding: 10px;
+    /* Optional: add padding for a better look */
+    width: 50px;
+    /* Adjust size */
+    height: 50px;
+    /* Adjust size */
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: #333 !important;
+    /* Darker shade when hovered with !important */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    filter: none;
+    /* Remove any default filters like opacity */
+}
+
+/* Optionally: Style for the entire prev/next button container */
+.carousel-control-prev,
+.carousel-control-next {
+    color: black !important;
+    /* Changes arrow color if needed */
+    outline: none;
+    /* Removes any focus outlines */
+}
+
+#order-summary {
+    display: none;
+    /* Hide the order summary by default */
+}
