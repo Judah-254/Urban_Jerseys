@@ -22,7 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$user_id', '$full_name', '$phone_number', '$street_address', '$location')";
 
     if (mysqli_query($conn, $sql)) {
-        $success_message = "Address added successfully!";
+        // Redirect to accounts page after successful address addition
+        header("Location: account.php?success=1"); // Add success flag in query string
+        exit();
     } else {
         $error_message = "Error: " . mysqli_error($conn);
     }
@@ -95,9 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2>Add New Address</h2>
 
     <!-- Display success or error messages -->
-    <?php if (isset($success_message)) { ?>
-        <div class="message success"><?php echo $success_message; ?></div>
-    <?php } elseif (isset($error_message)) { ?>
+    <?php if (isset($error_message)) { ?>
         <div class="message error"><?php echo $error_message; ?></div>
     <?php } ?>
 
