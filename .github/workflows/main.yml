@@ -14,8 +14,8 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ftp.majhubcloud.com
-        username: ${{ secrets.ftp_majcloud_username }}
-        password: ${{ secrets.ftp_majcloud_password }}
+        username: ${{ secrets.username }}
+        password: ${{ secrets.password }}
         server-dir: /
         timeout: 60000000
         exclude: |
