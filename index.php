@@ -417,7 +417,6 @@ $(document).on('click', '.add-to-cart-btn', function() {
 });
 
 </script>
-
-
+<?php include 'footer.php'; ?>
 </body>
 </html>
